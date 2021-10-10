@@ -29,7 +29,7 @@ billPaymentRouter
 billPaymentRouter
     .route("/:id")
     .get(async (req, res, next) => {
-        await BillCategory.find(req.params.id)
+        await BillCategory.find({id:req.params.id})
             .then(
                 (category) => {
                     res.statusCode = 200;
@@ -44,6 +44,14 @@ billPaymentRouter
                 next(err);
             });
     });
+
+billPaymentRouter
+.route("/bill/payment")
+.get(async (req, res, next) => {
+          res.statusCode = 200;
+          res.setHeader("Content-Type", "application/json");
+          res.json({message:"bill paid"});
+});
 
 
 module.exports = billPaymentRouter;
