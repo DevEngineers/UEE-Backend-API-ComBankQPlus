@@ -6,6 +6,7 @@ const logger = require("morgan");
 const cors = require("cors");
 const billPaymentRouter = require("./routes/billPaymentRouter");
 const notificationRouter = require("./routes/notificationRouter");
+const billAccountRouter = require("./routes/billAccountRouter");
 
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
@@ -47,6 +48,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/billPayment", billPaymentRouter);
 app.use("/notification", notificationRouter);
+app.use("/billAccount", billAccountRouter);
 
 /**
  * catch 404 and forward to error handler
