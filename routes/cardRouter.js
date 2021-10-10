@@ -47,7 +47,7 @@ cardRouter
 cardRouter
     .route("/:id")
     .get(async (req, res, next) => {
-        await Card.find(req.params.id)
+        await Card.findById(req.params.id)
             .then(
                 (card) => {
                     res.statusCode = 200;
