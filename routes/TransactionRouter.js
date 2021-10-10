@@ -28,6 +28,7 @@ transactionRouter
     .route("/")
     .get(async (req, res, next) => {
         await Transaction.find({})
+            .populate("fromAccount")
             .then((transaction) => {
                     res.statusCode = 200;
                     res.setHeader("Content-Type", "application/json")
@@ -47,6 +48,7 @@ transactionRouter
     .route("/:id")
     .get(async (req, res, next) => {
         await Transaction.find(req.params.id)
+            .populate("fromAccount")
             .then(
                 (transaction) => {
                     res.statusCode = 200;
