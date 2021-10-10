@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const BillCategory = require("../models/BillCategory");
 
 const billPaymentRouter = express.Router();
 
@@ -7,15 +8,14 @@ billPaymentRouter.use(bodyParser.json());
 
 billPaymentRouter
     .route("/")
-    .get(async (req, res, next) => {
-        /*await ClassTimetable.find({})
-            .populate("class")
-            .populate("classType")
+    .post(async (req, res, next) => {
+        let category = req.body;
+        await BillCategory.create(category)
             .then(
-                (classTimetables) => {
+                (category) => {
                     res.statusCode = 200;
                     res.setHeader("Content-Type", "application/json");
-                    res.json(classTimetables);
+                    res.json(category);
                 },
                 (err) => {
                     next(err);
@@ -23,55 +23,18 @@ billPaymentRouter
             )
             .catch((err) => {
                 next(err);
-            });*/
-    })
-    .post(async (req, res, next) => {
-        /*let timetable = req.body;
-        let newArrayObject = createSubjectObject(timetable);
-        let newTimetableOb = changeArrayValues(timetable);
-
-        await ClassTimetable.create(newTimetableOb)
-            .then(
-                (classTimetable) => {
-                    console.log(classTimetable);
-                    ClassTimetable.updateOne(
-                        {_id: classTimetable._id},
-                        {
-                            $set: {
-                                monday: newArrayObject.monday,
-                                tuesday: newArrayObject.tuesday,
-                                wednesday: newArrayObject.wednesday,
-                                thursday: newArrayObject.thursday,
-                                friday: newArrayObject.friday,
-                            },
-                        },
-                        {useFindAndModify: false}
-                    ).then((classTimetable) => {
-                        res.statusCode = 200;
-                        res.setHeader("Content-Type", "application/json");
-                        res.json(classTimetable);
-                    });
-                },
-                (err) => {
-                    next(err);
-                }
-            )
-            .catch((err) => {
-                next(err);
-            });*/
+            });
     });
 
 billPaymentRouter
     .route("/:id")
     .get(async (req, res, next) => {
-       /* await ClassTimetable.findById(req.params.id)
-            .populate("class")
-            .populate("classType")
+        await BillCategory.find(req.params.id)
             .then(
-                (classTimetable) => {
+                (category) => {
                     res.statusCode = 200;
                     res.setHeader("Content-Type", "application/json");
-                    res.json(classTimetable);
+                    res.json(category);
                 },
                 (err) => {
                     next(err);
@@ -79,7 +42,7 @@ billPaymentRouter
             )
             .catch((err) => {
                 next(err);
-            });*/
+            });
     });
 
 
