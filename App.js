@@ -25,12 +25,12 @@ const connect = mongoose.connect(process.env.MONGODB_ATLAS_URL, {
 });
 
 connect.then(
-  (db) => {
-      console.log("MongoDB Atlas connected with the server");
-  },
-  (err) => {
-      console.log(err);
-  }
+    (db) => {
+        console.log("MongoDB Atlas connected with the server");
+    },
+    (err) => {
+        console.log(err);
+    }
 );
 
 const app = express();
