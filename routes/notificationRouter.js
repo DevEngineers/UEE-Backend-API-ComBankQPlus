@@ -40,4 +40,20 @@ notificationRouter
         });
 });
 
+notificationRouter.route("/:id")
+.delete(async (req, res, next) => {
+    await Notification.findByIdAndRemove(req.params.id)
+    .then((notification) => {
+        res.statusCode = 200;
+        res.setHeader("Content-Type", "application/json");
+        res.json(notification);
+    },(err) => {
+        next(err);
+    })
+    .catch((err) => {
+        next(err);
+    })
+});
+
+
 module.exports = notificationRouter;
