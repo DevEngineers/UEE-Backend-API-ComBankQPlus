@@ -7,6 +7,8 @@ const cors = require("cors");
 const billPaymentRouter = require("./routes/billPaymentRouter");
 const notificationRouter = require("./routes/notificationRouter");
 const billAccountRouter = require("./routes/billAccountRouter");
+const cardRouter = require("./routes/cardRouter");
+const transactionRouter = require("./routes/TransactionRouter");
 
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
@@ -49,6 +51,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/billPayment", billPaymentRouter);
 app.use("/notification", notificationRouter);
 app.use("/billAccount", billAccountRouter);
+app.use("/card", cardRouter);
+app.use("/transaction", transactionRouter);
 
 /**
  * catch 404 and forward to error handler
