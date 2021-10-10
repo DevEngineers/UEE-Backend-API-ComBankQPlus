@@ -8,8 +8,27 @@ const billPaymentRouter = require("./routes/billPaymentRouter");
 const notificationRouter = require("./routes/notificationRouter");
 
 const dotenv = require("dotenv");
+const mongoose = require("mongoose");
 dotenv.config();
 
+
+/**
+ * Connecting to MongoDB Server
+ */
+const connect = mongoose.connect(process.env.MONGODB_ATLAS_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+});
+
+connect.then(
+  (db) => {
+      console.log("MongoDB Atlas connected with the server");
+  },
+  (err) => {
+      console.log(err);
+  }
+);
 
 const app = express();
 
