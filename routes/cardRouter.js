@@ -9,13 +9,12 @@ cardRouter.use(bodyParser.json());
 cardRouter
     .route("/")
     .post(async (req, res, next) => {
-        let card = req.body;
-        await Card.create(card)
+        await Card.create(req.body)
             .then(
-                (category) => {
+                (card) => {
                     res.statusCode = 200;
                     res.setHeader("Content-Type", "application/json");
-                    res.json(category);
+                    res.json(card);
                 },
                 (err) => {
                     next(err);
@@ -50,10 +49,10 @@ cardRouter
     .get(async (req, res, next) => {
         await Card.find(req.params.id)
             .then(
-                (category) => {
+                (card) => {
                     res.statusCode = 200;
                     res.setHeader("Content-Type", "application/json");
-                    res.json(category);
+                    res.json(card);
                 },
                 (err) => {
                     next(err);
