@@ -7,6 +7,11 @@ const TransactionSchema = new Schema({
         required:true,
         ref:'Card'
     },
+    title: {
+        type: String,
+        required: true,
+        default: ''
+    },
     accountNumber: {
         type: String,
         required: true,

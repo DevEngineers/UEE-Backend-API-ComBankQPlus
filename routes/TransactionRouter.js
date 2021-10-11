@@ -47,7 +47,7 @@ transactionRouter
 transactionRouter
     .route("/:id")
     .get(async (req, res, next) => {
-        await Transaction.find(req.params.id)
+        await Transaction.find(req.params.id).sort({Date: 1})
             .populate("fromAccount")
             .then(
                 (transaction) => {
