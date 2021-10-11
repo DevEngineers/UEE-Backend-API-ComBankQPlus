@@ -13,6 +13,8 @@ const LoginRouter = require("./routes/LoginRouter");
 const ForgotPinRouter = require("./routes/ForgotPinRouter");
 const CustomerProfile =require("./routes/CustomerProfileRoute");
 const ChangePin =require("./routes/ChangerPinRouter");
+const cardRouter =require("./routes/cardRouter");
+const TransactionRouter =require("./routes/TransactionRouter");
 
 
 const dotenv = require("dotenv");
@@ -56,6 +58,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/billPayment", billPaymentRouter);
 app.use("/notification", notificationRouter);
 app.use("/billAccount", billAccountRouter);
+app.use("/card",cardRouter);
+app.use("/transaction",TransactionRouter);
 app.use("/complaints", ComplaintRouter);
 app.use("/signup", SignupRouter);
 app.use("/login", LoginRouter);
