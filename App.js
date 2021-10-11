@@ -7,8 +7,13 @@ const cors = require("cors");
 const billPaymentRouter = require("./routes/billPaymentRouter");
 const notificationRouter = require("./routes/notificationRouter");
 const billAccountRouter = require("./routes/billAccountRouter");
-const cardRouter = require("./routes/cardRouter");
-const transactionRouter = require("./routes/TransactionRouter");
+const ComplaintRouter = require("./routes/ComplaintRouter");
+const SignupRouter = require("./routes/SignupRouter");
+const LoginRouter = require("./routes/LoginRouter");
+const ForgotPinRouter = require("./routes/ForgotPinRouter");
+const CustomerProfile =require("./routes/CustomerProfileRoute");
+const ChangePin =require("./routes/ChangerPinRouter");
+
 
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
@@ -25,12 +30,12 @@ const connect = mongoose.connect(process.env.MONGODB_ATLAS_URL, {
 });
 
 connect.then(
-    (db) => {
-        console.log("MongoDB Atlas connected with the server");
-    },
-    (err) => {
-        console.log(err);
-    }
+  (db) => {
+      console.log("MongoDB Atlas connected with the server");
+  },
+  (err) => {
+      console.log(err);
+  }
 );
 
 const app = express();
@@ -51,8 +56,12 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/billPayment", billPaymentRouter);
 app.use("/notification", notificationRouter);
 app.use("/billAccount", billAccountRouter);
-app.use("/card", cardRouter);
-app.use("/transaction", transactionRouter);
+app.use("/complaints", ComplaintRouter);
+app.use("/signup", SignupRouter);
+app.use("/login", LoginRouter);
+app.use("/forgotpin", ForgotPinRouter);
+app.use("/profile", CustomerProfile);
+app.use("/changepin", ChangePin);
 
 /**
  * catch 404 and forward to error handler

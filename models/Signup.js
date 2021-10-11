@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const SignupSchema = new Schema({
     userId:{
-        type:Number,
+        type:String,
         required:true,
         default:''
     },
